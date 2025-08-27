@@ -12,9 +12,13 @@ class CarWashStation:
         self.count_of_ratings = count_of_ratings
 
     def serve_cars(self, cars: list[Car]) -> float:
-        # takes cars that only follow expression: if Car.clean_mark < CarWashStation.clean_power
-        # return income (float, rounded till 1 decimal) of CarWashStation for provided list
-        pass
+        price_per_car = []
+        for car in cars:
+            if car.clean_mark < self.clean_power:
+                price_per_car.append(self.calculate_washing_price(car))
+
+        return round(sum(price_per_car),1)
+
 
     def calculate_washing_price(self, car: Car) -> float:
         # car's comfort class * difference between wash station's clean power and car's clean mark * car wash station rating / car wash station distance to the center of the city, returns number rounded to 1 decimal
@@ -23,6 +27,7 @@ class CarWashStation:
 
     def wash_single_car(self, clean_mark: int) -> None:
         # method, that washes a single car, so it should have clean_mark equals wash station's clean_power, if wash_station.clean_power is greater than car.clean_mark
+        # The washing cost will depend on car comfort class, car cleanness degree, wash station average rating and wash station distance from the center of the city.
         pass
 
     def rate_service(self, rating: int) -> None:
