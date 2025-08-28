@@ -22,14 +22,11 @@ class CarWashStation:
 
 
     def calculate_washing_price(self, car: Car) -> float:
-        # car's comfort class * difference between wash station's clean power and car's clean mark * car wash station rating / car wash station distance to the center of the city, returns number rounded to 1 decimal
-        # returns price of one car wash as a float rounded till one decimal
-        pass
+        washing_price = car.comfort_class * (self.clean_power - car.clean_mark) * self.average_rating / self.distance_from_city_center
+        return round(washing_price, 1)
 
-    def wash_single_car(self, clean_mark: int) -> None:
-        # method, that washes a single car, so it should have clean_mark equals wash station's clean_power, if wash_station.clean_power is greater than car.clean_mark
-        # The washing cost will depend on car comfort class, car cleanness degree, wash station average rating and wash station distance from the center of the city.
-        pass
+    def wash_single_car(self, car: Car) -> None:
+        car.clean_mark = self.clean_power
 
     def rate_service(self, rating: int) -> None:
         current_total_rating = self.average_rating * self.count_of_ratings
